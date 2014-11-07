@@ -32,6 +32,7 @@ Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highligh
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+Plugin 'elzr/vim-json'			" JSON plugin for vim
 
 call vundle#end()            		" required
 filetype on
@@ -45,8 +46,6 @@ set hlsearch		     " подсветка результатов поиска
 set nu 	            " показывать номера строк
 set scrolloff=5     " 5 строк при скролле за раз	
 
-set smarttab
-set tabstop=4
 
 augroup vimrc_autocmds
     autocmd!
@@ -111,13 +110,19 @@ let g:pymode_run = 0
 " Disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
 
+" Disable autocomplite on dot
+let g:jedi#popup_on_dot = 0
+
 " --- Python ---
-"  "autocmd FileType python set completeopt-=preview " раскомментируйте, в
+autocmd FileType python set completeopt-=preview " раскомментируйте, в
 "  случае, если не надо, чтобы jedi-vim показывал документацию по
 "  методу/классу
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ formatoptions+=croq softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8
-softtabstop=4 smartindent
-cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+
+autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4
+\ formatoptions+=croq softtabstop=4 smartindent
+
+let g:vim_json_syntax_conceal = 0

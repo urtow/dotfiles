@@ -128,3 +128,10 @@ autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4
 let g:vim_json_syntax_conceal = 0
 " Включить подсветку синтаксиса
 syntax on
+
+" Автодополнение по Alt + Space
+inoremap <M-space> <C-x><C-o>
+
+" Вертикальный сплит справа, а не слева
+set splitright
+

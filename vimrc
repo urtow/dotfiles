@@ -135,3 +135,5 @@ inoremap <M-space> <C-x><C-o>
 " Вертикальный сплит справа, а не слева
 set splitright
 
+" Правильная работа backspace
+set backspace=2

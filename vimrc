@@ -137,3 +137,6 @@ set splitright
 
 " Правильная работа backspace
 set backspace=2
+
+" Highloght current line
+set cursorline

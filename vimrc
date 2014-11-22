@@ -10,6 +10,12 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 
+"---------=== Highlight current line (weeeeee) ===---
+Plugin 'vim-scripts/highlight_current_line.vim'
+
+"---------=== Work with git from vim ====------------
+Plugin 'tpope/vim-fugitive'
+
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
@@ -138,5 +144,3 @@ set splitright
 " Правильная работа backspace
 set backspace=2
 
-" Highloght current line
-set cursorline

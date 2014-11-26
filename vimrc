@@ -13,9 +13,6 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 "---------=== Highlight current line (weeeeee) ===---
 Plugin 'vim-scripts/highlight_current_line.vim'
 
-"---------=== Work with git from vim ====------------
-Plugin 'tpope/vim-fugitive'
-
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
@@ -25,6 +22,7 @@ Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
 Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
+Plugin 'tpope/vim-fugitive'		" Git from VIM console
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager

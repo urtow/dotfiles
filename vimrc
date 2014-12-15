@@ -130,6 +130,7 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
 " Автоформатирование json файлов, прикрутить hotkey
+com! FormatJSON %!python -m json.tool
 function! FormatJSON() 
 	:%!python -m json.tool 
 endfunction

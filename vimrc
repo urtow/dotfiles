@@ -24,6 +24,9 @@ Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
 Plugin 'tpope/vim-fugitive'		" Git from VIM console
 
+"--------------=== Pytest support ===-----------------
+Plugin 'alfredodeza/pytest.vim'		" Support to run pytest test from vim
+
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager
 Plugin 'MarcWeber/vim-addon-mw-utils'	" dependencies #1
@@ -43,10 +46,10 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
-set enc=utf-8     " utf-8 по дефолту в файлÐ°х
-set ls=2             " всегда показываем статусбар
-set incsearch     " инкреминтируемый поиск
-set hlsearch		     " подсветка результатов поиска
+set enc=utf-8       " utf-8 по дефолту в файлах
+set ls=2            " всегда показываем статусбар
+set incsearch       " инкреминтируемый поиск
+set hlsearch	    " подсветка результатов поиска
 set nu 	            " показывать номера строк
 set scrolloff=5     " 5 строк при скролле за раз	
 
@@ -126,8 +129,12 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
-autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4
-\ formatoptions+=croq softtabstop=4 smartindent
+" Автоформатирование json файлов, прикрутить hotkey
+function! FormatJSON() 
+	:%!python -m json.tool 
+endfunction
+
+autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
 
 let g:vim_json_syntax_conceal = 0
 " Включить подсветку синтаксиса

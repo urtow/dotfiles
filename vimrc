@@ -150,3 +150,7 @@ set splitright
 " Правильная работа backspace
 set backspace=2
 
+" Пусть все файлы хранятся где надо
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//

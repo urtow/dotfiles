@@ -13,6 +13,9 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 "---------=== Highlight current line (weeeeee) ===---
 Plugin 'vim-scripts/highlight_current_line.vim'
 
+"---------=== Shell in Vim ===---------
+Plugin 'vim-scripts/conque-Shell'
+
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
@@ -154,3 +157,6 @@ set backspace=2
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
+" Перемещение по табам Alt+стрелки
+inoremap <M-Left> :tabp<CR>

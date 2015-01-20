@@ -13,9 +13,6 @@ Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 "---------=== Highlight current line (weeeeee) ===---
 Plugin 'vim-scripts/highlight_current_line.vim'
 
-"---------=== Shell in Vim ===---------
-Plugin 'vim-scripts/conque-Shell'
-
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser

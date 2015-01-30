@@ -157,3 +157,6 @@ set directory=~/.vim/.swp//
 
 " Перемещение по табам Alt+стрелки
 inoremap <M-Left> :tabp<CR>
+
+" Использование мыши
+set mouse=a

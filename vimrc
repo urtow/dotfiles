@@ -130,10 +130,10 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
 " Автоформатирование json файлов, прикрутить hotkey
-com! FormatJSON %!python -m json.tool
-function! FormatJSON() 
-	:%!python -m json.tool 
-endfunction
+com! FormatJSON %!jsonlint -s -t '    '
+"function! FormatJSON() 
+"	:%!python -m json.tool 
+"endfunction
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
 
@@ -160,3 +160,11 @@ inoremap <M-Left> :tabp<CR>
 
 " Использование мыши
 set mouse=a
+
+" tab navigation like firefox
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>

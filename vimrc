@@ -17,6 +17,9 @@ Plugin 'vim-scripts/highlight_current_line.vim'
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
 
+"---------=== Tabs show ===----------------------
+Plugin 'mkitt/tabline.vim'
+
 "------------------=== Other ===----------------------
 Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
 Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
@@ -131,9 +134,6 @@ autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 s
 
 " Автоформатирование json файлов, прикрутить hotkey
 com! FormatJSON %!jsonlint -s -t '    '
-"function! FormatJSON() 
-"	:%!python -m json.tool 
-"endfunction
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
 
@@ -155,16 +155,15 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
-" Перемещение по табам Alt+стрелки
-inoremap <M-Left> :tabp<CR>
-
 " Использование мыши
 set mouse=a
 
-" tab navigation like firefox
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
+" Tabs navigation
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>

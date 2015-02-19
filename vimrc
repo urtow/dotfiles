@@ -165,3 +165,6 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+
+" Abbr for set_trace
+iab ipdb __import__("ipdb").set_trace()

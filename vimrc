@@ -10,15 +10,9 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
 
-"---------=== Highlight current line (weeeeee) ===---
-Plugin 'vim-scripts/highlight_current_line.vim'
-
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
-
-"---------=== Tabs show ===----------------------
-Plugin 'mkitt/tabline.vim'
 
 "------------------=== Other ===----------------------
 Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
@@ -26,9 +20,9 @@ Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
 Plugin 'tpope/vim-fugitive'		" Git from VIM console
-
-"--------------=== Pytest support ===-----------------
-Plugin 'alfredodeza/pytest.vim'		" Support to run pytest test from vim
+Plugin 'vim-scripts/highlight_current_line.vim'  " Highlight current line (weeeeee) 
+Plugin 'xolox/vim-session'		" Extend Session Manager
+Plugin 'xolox/vim-misc'			" dependecies for vim-session
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager
@@ -71,6 +65,7 @@ let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#tab_nr_type = 1
 
 "-----NerdTree settings------------
 " показать NERDTree на F3
@@ -131,6 +126,9 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ formatoptions+=croq softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+
+" Настройка Session manager
+let g:session_autosave = 'no'
 
 " Автоформатирование json файлов, прикрутить hotkey
 com! FormatJSON %!jsonlint -s -t '    '

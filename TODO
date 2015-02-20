@@ -1,2 +1,0 @@
-1. Macros for save and git commit; git push current file (or files)
-2. Hot key for macros in 1; may be autocommand? For write file. If it's git repo - automatically git commit (with what?)

@@ -157,14 +157,57 @@ set directory=~/.vim/.swp//
 set mouse=a
 
 " Tabs navigation
-nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
+"nnoremap th  :tabfirst<CR>
+"nnoremap tj  :tabnext<CR>
+"nnoremap tk  :tabprev<CR>
+"nnoremap tl  :tablast<CR>
+"nnoremap tt  :tabedit<Space>
+"nnoremap tn  :tabnext<Space>
+"nnoremap tm  :tabm<Space>
+"nnoremap td  :tabclose<CR>
 
 " Abbr for set_trace
 iab ipdb __import__("ipdb").set_trace()
+
+ " Enhance command-line completion
+ " Only available when compiled with the +wildmenu feature
+ set wildmenu
+ " Set completion mode
+ " When more than one match, list all matches and complete first match
+ " Then complete the next full match
+ set wildmode=list:longest,full
+ " Ignore following files when completing file/directory names
+ " Version control
+ set wildignore+=.hg,.git,.svn
+ " OS X
+ set wildignore+=*.DS_Store
+ " Python byte code
+ set wildignore+=*.pyc
+ " Binary images
+ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+
+" Switch tabs with <Tab>
+nmap <Tab> gt
+nmap <S-Tab> gT
+
+" Shortcuts started from ,
+let mapleader = ","
+
+" ,m
+" Toggle mouse support in Normal mode
+set mouse=
+function! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
+nnoremap <leader>m :call ToggleMouse()<CR>
+
+" ,v
+" Open .vimrc in new tab
+nmap <leader>v :tabedit $MYVIMRC<CR>
+:cabbrev e NERDTreeClose<CR>:e!

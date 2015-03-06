@@ -23,6 +23,7 @@ Plugin 'tpope/vim-fugitive'		" Git from VIM console
 Plugin 'vim-scripts/highlight_current_line.vim'  " Highlight current line (weeeeee) 
 Plugin 'xolox/vim-session'		" Extend Session Manager
 Plugin 'xolox/vim-misc'			" dependecies for vim-session
+Plugin 'ervandew/supertab'		" Tab auto complete
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager
@@ -66,12 +67,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#tab_nr_type = 1
-
-"-----NerdTree settings------------
-" показать NERDTree на F3
-map <F3> :NERDTreeToggle<CR>
-"игноррируемые файлы с расширениями
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']  
 
 "----TaskList settings--------------
 " отобразить список тасков на F2
@@ -129,9 +124,16 @@ autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 s
 
 " Настройка Session manager
 let g:session_autosave = 'no'
+" Короткая команда для сохранения сессии
+com! SS SaveSession
 
 " Автоформатирование json файлов, прикрутить hotkey
 com! FormatJSON %!jsonlint -s -t '    '
+
+" Перечитать мой vimrc
+com! RereadVimrc so $MYVIMRC
+" Короткая каоманда для перечитывания конфига
+com! RVC RereadVimrc
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
 
@@ -141,9 +143,6 @@ syntax on
 
 " Автодополнение по Alt + Space
 inoremap <M-space> <C-x><C-o>
-
-" Вертикальный сплит справа, а не слева
-set splitright
 
 " Правильная работа backspace
 set backspace=2
@@ -211,3 +210,25 @@ nnoremap <leader>m :call ToggleMouse()<CR>
 " Open .vimrc in new tab
 nmap <leader>v :tabedit $MYVIMRC<CR>
 :cabbrev e NERDTreeClose<CR>:e!
+
+"-----NerdTree settings------------
+" ,t
+map <leader>t :NERDTreeToggle<CR>
+"игноррируемые файлы с расширениями
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']  
+
+" Vertical split under currenrt buffer
+set splitbelow
+
+" Горизонтальный сплит справа, а не слева
+set splitright
+
+" Disable ex mode, and map quit to Q
+map Q <Nop>
+map Q q
+
+" Create a new window relative to the current one
+nnoremap <Leader><left>  :<C-u>leftabove  vnew<CR>
+nnoremap <Leader><right> :<C-u>rightbelow vnew<CR>
+nnoremap <Leader><up>    :<C-u>leftabove  new<CR>
+nnoremap <Leader><down>  :<C-u>rightbelow new<CR>

@@ -92,8 +92,10 @@ let g:pymode_lint_write = 1
 let g:pymode_virtualenv = 1
 "
 " " установка breakpoints
+let g:pymode_breakpoint_cmd = '__import__("ipdb").set_trace() # BREAK POINT'
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_key = '<leader>b'
+
 "
 " " подстветка синтаксиса
 let g:pymode_syntax = 1
@@ -127,12 +129,9 @@ let g:session_autosave = 'no'
 " Короткая команда для сохранения сессии
 com! SS SaveSession
 
-" Автоформатирование json файлов, прикрутить hotkey
-com! FormatJSON %!jsonlint -s -t '    '
-
 " Перечитать мой vimrc
 com! RereadVimrc so $MYVIMRC
-" Короткая каоманда для перечитывания конфига
+" Короткая команда для перечитывания конфига
 com! RVC RereadVimrc
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
@@ -194,7 +193,7 @@ let mapleader = ","
 
 " ,m
 " Toggle mouse support in Normal mode
-set mouse=
+set mouse=a
 function! ToggleMouse()
   if &mouse == 'a'
     set mouse=
@@ -210,6 +209,10 @@ nnoremap <leader>m :call ToggleMouse()<CR>
 " Open .vimrc in new tab
 nmap <leader>v :tabedit $MYVIMRC<CR>
 :cabbrev e NERDTreeClose<CR>:e!
+
+
+" Автоформатирование json файлов, прикрутить hotkey
+com! FormatJSON %!jsonlint -s -t '    '
 
 "-----NerdTree settings------------
 " ,t
@@ -232,3 +235,10 @@ nnoremap <Leader><left>  :<C-u>leftabove  vnew<CR>
 nnoremap <Leader><right> :<C-u>rightbelow vnew<CR>
 nnoremap <Leader><up>    :<C-u>leftabove  new<CR>
 nnoremap <Leader><down>  :<C-u>rightbelow new<CR>
+
+" Spell check for python files and gitcommit
+autocmd FileType gitcommit setlocal spell
+autocmd BufRead,BufNewFile,BufWrite *.py setlocal spell
+
+" Complete for words
+set complete+=kspell

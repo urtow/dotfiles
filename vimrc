@@ -37,7 +37,10 @@ Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highligh
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+
+"--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim
+
 
 call vundle#end()            		" required
 filetype on
@@ -92,7 +95,7 @@ let g:pymode_lint_write = 1
 let g:pymode_virtualenv = 1
 "
 " " установка breakpoints
-let g:pymode_breakpoint_cmd = '__import__("ipdb").set_trace() # BREAK POINT'
+let g:pymode_breakpoint_cmd = "__import__(\"ipdb\").set_trace() # BREAK POINT" 
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_key = '<leader>b'
 
@@ -151,9 +154,6 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
-" Использование мыши
-set mouse=a
-
 " Tabs navigation
 "nnoremap th  :tabfirst<CR>
 "nnoremap tj  :tabnext<CR>
@@ -164,25 +164,22 @@ set mouse=a
 "nnoremap tm  :tabm<Space>
 "nnoremap td  :tabclose<CR>
 
-" Abbr for set_trace
-iab ipdb __import__("ipdb").set_trace()
-
- " Enhance command-line completion
- " Only available when compiled with the +wildmenu feature
- set wildmenu
- " Set completion mode
- " When more than one match, list all matches and complete first match
- " Then complete the next full match
- set wildmode=list:longest,full
- " Ignore following files when completing file/directory names
- " Version control
- set wildignore+=.hg,.git,.svn
- " OS X
- set wildignore+=*.DS_Store
- " Python byte code
- set wildignore+=*.pyc
- " Binary images
- set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+" Enhance command-line completion
+" Only available when compiled with the +wildmenu feature
+set wildmenu
+" Set completion mode
+" When more than one match, list all matches and complete first match
+" Then complete the next full match
+set wildmode=list:longest,full
+" Ignore following files when completing file/directory names
+" Version control
+set wildignore+=.hg,.git,.svn
+" OS X
+set wildignore+=*.DS_Store
+" Python byte code
+set wildignore+=*.pyc
+" Binary images
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
 " Switch tabs with <Tab>
 nmap <Tab> gt
@@ -210,8 +207,9 @@ nnoremap <leader>m :call ToggleMouse()<CR>
 nmap <leader>v :tabedit $MYVIMRC<CR>
 :cabbrev e NERDTreeClose<CR>:e!
 
-
-" Автоформатирование json файлов, прикрутить hotkey
+" ,j
+" Автоформатирование json файлов
+nmap <leader>j :FormatJSON
 com! FormatJSON %!jsonlint -s -t '    '
 
 "-----NerdTree settings------------
@@ -241,4 +239,4 @@ autocmd FileType gitcommit setlocal spell
 autocmd BufRead,BufNewFile,BufWrite *.py setlocal spell
 
 " Complete for words
-set complete+=kspell
+" set complete+=kspell

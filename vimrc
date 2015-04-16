@@ -95,7 +95,7 @@ let g:pymode_lint_write = 1
 let g:pymode_virtualenv = 1
 "
 " " установка breakpoints
-let g:pymode_breakpoint_cmd = "__import__(\"ipdb\").set_trace() # BREAK POINT" 
+let g:pymode_breakpoint_cmd = "__import__(\"ipdb\").set_trace()  # BREAK POINT" 
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_key = '<leader>b'
 
@@ -209,7 +209,7 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " ,j
 " Автоформатирование json файлов
-nmap <leader>j :FormatJSON
+nmap <leader>j :FormatJSON<CR>
 com! FormatJSON %!jsonlint -s -t '    '
 
 "-----NerdTree settings------------

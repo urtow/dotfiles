@@ -24,6 +24,7 @@ Plugin 'vim-scripts/highlight_current_line.vim'  " Highlight current line (weeee
 Plugin 'xolox/vim-session'		" Extend Session Manager
 Plugin 'xolox/vim-misc'			" dependecies for vim-session
 Plugin 'ervandew/supertab'		" Tab auto complete
+Plugin 'saltstack/salt-vim'     " SLS syntax  
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager
@@ -237,6 +238,9 @@ nnoremap <Leader><down>  :<C-u>rightbelow new<CR>
 " Spell check for python files and gitcommit
 autocmd FileType gitcommit setlocal spell
 autocmd BufRead,BufNewFile,BufWrite *.py setlocal spell
+
+" salt-vim settings
+let g:sls_use_jinja_syntax = 1  
 
 " Complete for words
 " set complete+=kspell

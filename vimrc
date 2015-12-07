@@ -182,6 +182,11 @@ set wildignore+=*.pyc
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
+" Paste mode
+" Вставка кода as is, а не творить полную хрень
+set paste
+
+
 " Switch tabs with <Tab>
 nmap <Tab> gt
 nmap <S-Tab> gT

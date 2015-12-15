@@ -182,10 +182,6 @@ set wildignore+=*.pyc
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-" Paste mode
-" Вставка кода as is, а не творить полную хрень
-set paste
-
 
 " Switch tabs with <Tab>
 nmap <Tab> gt
@@ -193,6 +189,10 @@ nmap <S-Tab> gT
 
 " Shortcuts started from ,
 let mapleader = ","
+
+" Paste mode
+" Если включен - вставка кода as is, а не творить полную хрень
+set pastetoggle=<leader>p
 
 " ,m
 " Toggle mouse support in Normal mode

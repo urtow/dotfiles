@@ -38,6 +38,9 @@ Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highligh
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+ " --- RobotFramework ---
+Plugin 'mfukar/robotframework-vim'
+
 
 "--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim
@@ -139,6 +142,7 @@ com! RereadVimrc so $MYVIMRC
 com! RVC RereadVimrc
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
+autocmd FileType robot setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
 
 let g:vim_json_syntax_conceal = 0
 " Включить подсветку синтаксиса

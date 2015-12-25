@@ -40,7 +40,8 @@ Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
  " --- RobotFramework ---
 Plugin 'mfukar/robotframework-vim'
-
+" --- Golang ---
+Plugin 'fatih/vim-go'
 
 "--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim

@@ -144,6 +144,7 @@ com! RVC RereadVimrc
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
 autocmd FileType robot setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
+autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent
 
 let g:vim_json_syntax_conceal = 0
 " Включить подсветку синтаксиса

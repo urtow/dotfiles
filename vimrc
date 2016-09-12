@@ -25,7 +25,8 @@ Plugin 'vim-scripts/highlight_current_line.vim'  " Highlight current line (weeee
 Plugin 'xolox/vim-session'		" Extend Session Manager
 Plugin 'xolox/vim-misc'			" dependecies for vim-session
 Plugin 'ervandew/supertab'		" Tab auto complete
-Plugin 'saltstack/salt-vim'     " SLS syntax  
+"Plugin 'saltstack/salt-vim'     " SLS syntax  
+Plugin 'godlygeek/tabular.git'   " Tabularize /= for make equal tabs, see more here http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager

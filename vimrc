@@ -159,9 +159,9 @@ inoremap <M-space> <C-x><C-o>
 set backspace=2
 
 " Пусть все файлы хранятся где надо
-set undodir=~/.vim/.undo//
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
+"set undodir=~/.vim/.undo//
+"set backupdir=~/.vim/.backup//
+"set directory=~/.vim/.swp//
 
 " Tabs navigation
 "nnoremap th  :tabfirst<CR>

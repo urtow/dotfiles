@@ -1,0 +1,13 @@
+[push]
+	default = upstream
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	st = status --short --branch
+	d = difftool
+[diff]
+	tool = vimdiff
+[difftool]
+	tool = vimdiff $LOCAL $REMOTE
+	prompt = true

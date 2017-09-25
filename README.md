@@ -1,7 +1,7 @@
-vimrc
+Dot Files
 =====
 
-My vimrc
+Vimrc usage:
 
 Vundle install
 
@@ -12,3 +12,7 @@ Launch vim and run :PluginInstall
 or
 
 vim +PluginInstall +qall
+
+Gitconfig usage:
+
+It's simple

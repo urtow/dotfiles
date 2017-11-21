@@ -40,8 +40,9 @@ Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highligh
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+Plugin 'pearofducks/ansible-vim'    " For Ansible
  " --- RobotFramework ---
-Plugin 'mfukar/robotframework-vim'
+"Plugin 'mfukar/robotframework-vim'
 " --- Golang ---
 Plugin 'fatih/vim-go'
 

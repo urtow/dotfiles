@@ -45,6 +45,8 @@ Plugin 'pearofducks/ansible-vim'    " For Ansible
 "Plugin 'mfukar/robotframework-vim'
 " --- Golang ---
 Plugin 'fatih/vim-go'
+" ---- Haskell ----
+Plugin 'eagletmt/ghcmod-vim'
 
 "--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim

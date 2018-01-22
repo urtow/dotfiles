@@ -2,6 +2,7 @@
 	default = upstream
 [alias]
 	co = checkout
+	cob = checkout -b
 	ci = commit
 	br = branch
 	st = status --short --branch

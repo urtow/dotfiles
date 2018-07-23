@@ -36,18 +36,21 @@ Plugin 'honza/vim-snippets'		" snippets repo
 
 "---------------=== Languages support ===-------------
 " --- Python ---
-Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
-Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
-Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
-Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
-Plugin 'pearofducks/ansible-vim'    " For Ansible
+"Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
+"Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
+"Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
+"Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+"Plugin 'pearofducks/ansible-vim'    " For Ansible
  " --- RobotFramework ---
 "Plugin 'mfukar/robotframework-vim'
 " --- Golang ---
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
 " ---- Haskell ----
-Plugin 'Shougo/vimproc.vim'
-Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'eagletmt/ghcmod-vim'
+
+" ---- Javascript -----
+Plugin 'pangloss/vim-javascript'
 
 "--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim
@@ -69,7 +72,7 @@ set scrolloff=5     " 5 строк при скролле за раз
 augroup vimrc_autocmds
     autocmd!
     autocmd FileType ruby,python,javascript,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType ruby,python,javascript,c,cpp match Excess /\%80v.*/
+    autocmd FileType ruby,python,c,cpp match Excess /\%80v.*/
     autocmd FileType ruby,python,javascript,c,cpp set nowrap
 augroup END
 

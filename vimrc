@@ -259,6 +259,10 @@ nnoremap <Leader><down>  :<C-u>rightbelow new<CR>
 autocmd FileType gitcommit setlocal spell
 autocmd BufRead,BufNewFile,BufWrite *.py setlocal spell
 
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " salt-vim settings
 let g:sls_use_jinja_syntax = 1  
 

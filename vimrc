@@ -15,7 +15,7 @@ Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
 
 "------------------=== Other ===----------------------
-Plugin 'bling/vim-airline'   	    	" Lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline-themes' " Lean & mean status/tabline for vim
 Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
@@ -37,6 +37,14 @@ Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highligh
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+Plugin 'luochen1990/rainbow' 		" Rainbow ( 
+
+" --- Rust ---
+Plugin 'rust-lang/rust.vim'
+
+" Lang servers support
+Plugin 'autozimu/LanguageClient-neovim'
+Plugin 'junegunn/fzf'
 
 "--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim
@@ -61,7 +69,7 @@ augroup vimrc_autocmds
     autocmd FileType ruby,python,javascript,c,cpp match Excess /\%80v.*/
     autocmd FileType ruby,python,javascript,c,cpp set nowrap
 augroup END
-
+let g:rainbow_active = 1
 
 "------Airline Settings-----------
 set laststatus=2
@@ -126,6 +134,13 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ formatoptions+=croq softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+
+"  Auto format for rust
+let g:autofmt_autosave = 1
+
+
+" Убираем старый парсер
+let g:snipMate = { 'snippet_version' : 1 }
 
 " Настройка Session manager
 let g:session_autosave = 'no'
@@ -209,8 +224,8 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " ,j
 " Автоформатирование json файлов
-nmap <leader>j :FormatJSON<CR>
-com! FormatJSON %!jsonlint -s -t '    '
+" nmap <leader>j :FormatJSON<CR>
+" com! FormatJSON %!jsonlint -s -t '    '
 
 "-----NerdTree settings------------
 " ,t
@@ -237,6 +252,16 @@ nnoremap <Leader><down>  :<C-u>rightbelow new<CR>
 " Spell check for python files and gitcommit
 autocmd FileType gitcommit setlocal spell
 autocmd BufRead,BufNewFile,BufWrite *.py setlocal spell
+
+
+" Language servers
+" Required for operations modifying multiple buffers like rename.
+"set hidden
+"
+"let g:LanguageClient_serverCommands = {
+"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"    \ 'python': ['/usr/local/bin/pyls'],
+"    \ }
 
 " Complete for words
 " set complete+=kspell

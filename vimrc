@@ -6,6 +6,7 @@ filetype off                  " required
 "=====================================================
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/LanguageClient-neovim/bin
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
@@ -15,7 +16,8 @@ Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
 Plugin 'majutsushi/tagbar'          	" Class/module browser
 
 "------------------=== Other ===----------------------
-Plugin 'vim-airline/vim-airline-themes' " Lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline'      " Lean & mean sta    tus/tabline for vim
+Plugin 'vim-airline/vim-airline-themes'  " Themes for airline
 Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
 Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
 Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
@@ -24,6 +26,8 @@ Plugin 'vim-scripts/highlight_current_line.vim'  " Highlight current line (weeee
 Plugin 'xolox/vim-session'		" Extend Session Manager
 Plugin 'xolox/vim-misc'			" dependecies for vim-session
 Plugin 'ervandew/supertab'		" Tab auto complete
+"Plugin 'saltstack/salt-vim'     " SLS syntax  
+Plugin 'godlygeek/tabular.git'   " Tabularize /= for make equal tabs, see more here http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 "--------------=== Snippets support ===---------------
 Plugin 'garbas/vim-snipmate'		" Snippets manager
@@ -41,10 +45,29 @@ Plugin 'luochen1990/rainbow' 		" Rainbow (
 
 " --- Rust ---
 Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+Plugin 'dense-analysis/ale'
 
 " Lang servers support
 Plugin 'autozimu/LanguageClient-neovim'
 Plugin 'junegunn/fzf'
+
+" Autocomplete
+Plugin 'maralla/completor.vim'
+
+
+"Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
+"Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
+"Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
+"Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+"Plugin 'pearofducks/ansible-vim'    " For Ansible
+ " --- RobotFramework ---
+"Plugin 'mfukar/robotframework-vim'
+" --- Golang ---
+"Plugin 'fatih/vim-go'
+" ---- Haskell ----
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'eagletmt/ghcmod-vim'
 
 "--------------=== JSON Support ===--------------------
 Plugin 'elzr/vim-json'			" JSON plugin for vim
@@ -62,11 +85,13 @@ set hlsearch	    " подсветка результатов поиска
 set nu 	            " показывать номера строк
 set scrolloff=5     " 5 строк при скролле за раз	
 
+" Shortcuts started from ,
+let mapleader = ","
 
 augroup vimrc_autocmds
     autocmd!
     autocmd FileType ruby,python,javascript,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType ruby,python,javascript,c,cpp match Excess /\%80v.*/
+    autocmd FileType ruby,python,c,cpp match Excess /\%80v.*/
     autocmd FileType ruby,python,javascript,c,cpp set nowrap
 augroup END
 let g:rainbow_active = 1
@@ -81,7 +106,7 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 
 "----TaskList settings--------------
 " отобразить список тасков на F2
-map <F2> :TaskList<CR> 	   
+" map <F2> :TaskList<CR> 	   
 
 "-----Python-mode settings----------
 
@@ -137,7 +162,15 @@ autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 s
 
 "  Auto format for rust
 let g:autofmt_autosave = 1
+" Path to racer (Autocomplete)
+let g:completor_racer_binary = '~/.cargo/bin/racer'
+" Go to definition for Rust files
+autocmd FileType rust nnoremap <leader>d :ALEGoToDefinition<CR>
 
+
+" Ctags for rust
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
 " Убираем старый парсер
 let g:snipMate = { 'snippet_version' : 1 }
@@ -153,6 +186,8 @@ com! RereadVimrc so $MYVIMRC
 com! RVC RereadVimrc
 
 autocmd FileType json setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
+autocmd FileType robot setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent 
+autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=4 formatoptions+=croq softtabstop=4 smartindent
 
 let g:vim_json_syntax_conceal = 0
 " Включить подсветку синтаксиса
@@ -165,9 +200,9 @@ inoremap <M-space> <C-x><C-o>
 set backspace=2
 
 " Пусть все файлы хранятся где надо
-set undodir=~/.vim/.undo//
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
+"set undodir=~/.vim/.undo//
+"set backupdir=~/.vim/.backup//
+"set directory=~/.vim/.swp//
 
 " Tabs navigation
 "nnoremap th  :tabfirst<CR>
@@ -196,12 +231,15 @@ set wildignore+=*.pyc
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
+
 " Switch tabs with <Tab>
 nmap <Tab> gt
 nmap <S-Tab> gT
 
-" Shortcuts started from ,
-let mapleader = ","
+
+" Paste mode
+" Если включен - вставка кода as is, а не творить полную хрень
+set pastetoggle=<leader>p
 
 " ,m
 " Toggle mouse support in Normal mode
@@ -256,12 +294,23 @@ autocmd BufRead,BufNewFile,BufWrite *.py setlocal spell
 
 " Language servers
 " Required for operations modifying multiple buffers like rename.
-"set hidden
-"
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"    \ 'python': ['/usr/local/bin/pyls'],
-"    \ }
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ }
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" salt-vim settings
+let g:sls_use_jinja_syntax = 1  
 
 " Complete for words
 " set complete+=kspell

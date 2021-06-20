@@ -1,0 +1,19 @@
+[alias]
+	ci = commit
+	co = checkout
+	cob = checkout -b
+	br = branch
+	st = status --short --branch
+	d = difftool
+	glog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[push]
+	default = upstream
+[core]
+	editor = vim
+[color]
+	ui = auto
+[diff]
+	tool = vimdiff
+[difftool]
+	tool = vimdiff $LOCAL $REMOTE
+	prompt = true

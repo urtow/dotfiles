@@ -3,14 +3,14 @@ Dot Files
 
 **NeoVim install:**
 
-#. Install neovim
+1. Install neovim
 `brew install neovim`
-#. Copy init.vim into ~/.config/nvim
-#. Install pyright
+2. Copy init.vim into ~/.config/nvim
+3. Install pyright
 `npm install -g pyright`
-#. Install vim plug:
+4. Install vim plug:
 `sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
-#. Have fun
+5. Have fun
 
 
 **Gitconfig usage:**

@@ -23,11 +23,11 @@ highlight ColorColumn ctermbg=9 "display ugly bright red bar at color column num
 " Keybind Ctrl+l to clear search
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 
-" When python filetype is detected, F5 can be used to execute script 
+" When python filetype is detected, F5 can be used to execute script
 autocmd FileType python nnoremap <buffer> <F5> :w<cr>:exec '!clear'<cr>:exec '!python3' shellescape(expand('%:p'), 1)<cr>
 
 "vim-plug configuration, plugins will be installed in ~/.config/nvim/plugged
-call plug#begin('$HOME/.local/share/') 
+call plug#begin('$HOME/.local/share/')
 
 Plug 'junegunn/vim-plug'
 Plug 'neovim/nvim-lspconfig'
@@ -40,6 +40,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'vim-airline/vim-airline'      " Lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
+Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
 
 " For vsnip users.
 Plug 'hrsh7th/cmp-vsnip'
@@ -139,7 +140,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -185,6 +187,9 @@ endfunction
 nnoremap <leader>m :call ToggleMouse()<CR>
 nnoremap <leader>r :redo<CR>
 
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>N :bp<CR>
+
 " Paste mode
 " Если включен - вставка кода as is, а не творить полную хрень
 set pastetoggle=<leader>p
@@ -203,10 +208,14 @@ set splitright
 map Q <Nop>
 map Q q
 
+" Run black on crtl+q
+nnoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
+inoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
+
 
 " run current script with python3 by CTRL+R in command and insert mode
-autocmd FileType python map <buffer> <C-R> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <C-R> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python map <buffer> <C-R> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python imap <buffer> <C-R> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
 " Enhance command-line completion
 " Only available when compiled with the +wildmenu feature

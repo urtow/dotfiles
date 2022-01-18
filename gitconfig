@@ -9,11 +9,15 @@
 [push]
 	default = upstream
 [core]
-	editor = vim
+	editor = nvim
+	excludesfile = /Users/danil/.gitignore_global
 [color]
-	ui = auto
-[diff]
-	tool = vimdiff
+    ui = auto
 [difftool]
-	tool = vimdiff $LOCAL $REMOTE
-	prompt = true
+    prompt = false
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[pull]
+	rebase = false

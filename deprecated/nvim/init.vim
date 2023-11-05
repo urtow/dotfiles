@@ -40,13 +40,36 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'vim-airline/vim-airline'      " Lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'  " Themes for airline
-Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+
+Plug 'simrat39/rust-tools.nvim'
+Plug 'majutsushi/tagbar'
+
+" Funnu menu for cmp
+Plug 'onsails/lspkind.nvim'
 
 " For vsnip users.
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
-Plug 'morhetz/gruvbox'  " colorscheme gruvbox
+" colorscheme gruvbox
+Plug 'morhetz/gruvbox'
+
+" For Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Debug
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'theHamsta/nvim-dap-virtual-text'
+
+
+" PlantUML
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
 
 call plug#end()
 
@@ -58,12 +81,23 @@ colorscheme gruvbox
 let g:completion_enable_fuzzy_match = 0
 set completeopt=menuone,noinsert,noselect
 
+let g:tagbar_position='botright'
+
+let mapleader = ","
+
 lua << EOF
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
 -- luasnip setup
 local luasnip = require 'luasnip'
+
+--local ok, lspkind = pcall(require, "lspkind")
+--if not ok then
+--  return
+--end
+--
+--lspkind.init()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -87,29 +121,21 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-      elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
-      elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
-      else
-        fallback()
-      end
-    end,
   },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'buffer', keyword_lenght = 5  },
   },
+  --formatting = {
+  --    format = lspkind.cmp_format {
+  --        with_text = true,
+  --        menu = {
+  --            buffer = "[buf]",
+  --            nvim_lsp = "[LSP]",
+  --            },
+  --        },
+  --    },
 }
 
 local nvim_lsp = require('lspconfig')
@@ -150,7 +176,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright',  }
+local servers = { 'pyright',  'rust_analyzer' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -161,7 +187,6 @@ for _, lsp in ipairs(servers) do
 end
 EOF
 
-let mapleader = ","
 
 "------Airline Settings-----------
 set laststatus=2
@@ -207,10 +232,11 @@ set splitright
 map Q <Nop>
 map Q q
 
-" Run black on crtl+q
-nnoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
-inoremap <buffer><silent> <c-q> <cmd>call Black()<cr>
+" Open tagbar automatically in C files, optional
+autocmd FileType c call tagbar#autoopen(0)
 
+" Open tagbar automatically in Python files, optional
+autocmd FileType python call tagbar#autoopen(0)
 
 " run current script with python3 by CTRL+R in command and insert mode
 " autocmd FileType python map <buffer> <C-R> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
@@ -232,3 +258,7 @@ set wildignore+=*.DS_Store
 set wildignore+=*.pyc
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+
+
+" DAP
+lua require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')

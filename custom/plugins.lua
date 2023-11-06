@@ -1,15 +1,19 @@
 local plugins = {
   {
-    "mfussenegger/nvim-dap",
-    config = function (_, _)
-      require("core.utils").load_mappings("dap")
-    end
-  },
-  {
     "rcarriga/nvim-dap-ui",
+    init = function (_, _)
+      require("core.utils").load_mappings "Dap"
+    end,
     dependencies = "mfussenegger/nvim-dap",
     config = function()
+      require "custom.configs.debugpy"
       local dap = require("dap")
+
+      vim.fn.sign_define(
+            "DapBreakpoint",
+            { text = "🛑", texthl = "DiagnosticSignError", linehl = "", numhl = "" }
+          )
+
       local dapui = require("dapui")
       dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -22,19 +26,6 @@ local plugins = {
         dapui.close()
       end
     end
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
-    config = function (_, _)
-      local path = " ~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-      require("dap-python").setup(path)
-      require("core.utils").load_mappings("dap_python")
-    end,
   },
   {
     "williamboman/mason.nvim",

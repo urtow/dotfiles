@@ -1,5 +1,12 @@
 local M = {}
 
+M.general = {
+  n = {
+    -- Disable unused
+    ["<leader>n"] = {""},
+  }
+}
+
 M.Dap = {
   plugin = true,
   n = {

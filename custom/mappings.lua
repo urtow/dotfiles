@@ -3,7 +3,7 @@ local M = {}
 M.dap = {
   plugin = true,
   n = {
-    ["<leader>db"] = {"<cmd> DapToggleBreakpoint <CR>"}
+    ["<leader>db"] = {"<cmd> DapToggleBreakpoint <CR>", "Set a break point"}
   }
 }
 
@@ -13,7 +13,8 @@ M.dap_python = {
     ["<leader>dpr"] = {
       function()
         require('dap-python').test_method()
-      end
+      end,
+      "Run test method",
     }
   }
 }

@@ -7,6 +7,34 @@ M.general = {
   }
 }
 
+M.nvimtree = {
+  plugin = true,
+
+  n = {
+    -- toggle
+    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+
+    -- Focus
+    ["<leader>e"] = {""},
+  },
+
+}
+
+M.lspconfig = {
+  plugin = true,
+  n = {
+    -- Disable old floating diagnostic
+    ["<leader>lf"] = {""},
+    ["<leader>e"] = {
+      function()
+        vim.diagnostic.open_float { border = "rounded" }
+      end,
+      "Full diagnostic",
+    },
+
+  },
+}
+
 M.Dap = {
   plugin = true,
   n = {

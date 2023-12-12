@@ -1,0 +1,10 @@
+export HOMEBREW_GITHUB_API_TOKEN=8b9556f868cb187c4750ccc33567c0b66884c11e
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+alias nvi="nvim"
+alias c="cargo"
+
+alias hrep="history | grep"
+
+PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%~%{$reset_color%}"
+PROMPT+=' $(git_prompt_info)'
